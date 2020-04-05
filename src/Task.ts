@@ -64,14 +64,14 @@ export default class Task {
 
   // Timeout in seconds
   private async _sleep(timeout: number) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       setTimeout(resolve, timeout * 1000);
     });
   }
 
   // Timeout in seconds
   private async _timeoutFn(timeout: number) {
-    return new Promise<Deno.ProcessStatus>(resolve => {
+    return new Promise<Deno.ProcessStatus>((resolve) => {
       setTimeout(() => {
         resolve({
           success: false,

@@ -14,7 +14,8 @@ if (DEBUG) {
 }
 
 const bufReader = new BufReader(Deno.stdin);
-let line: any; // TODO: Fix this type cast
+let line: any // TODO: Fix this type cast
+;
 
 let commands: string[] = [];
 while ((line = await bufReader.readString("\n")) != Deno.EOF) {
@@ -27,6 +28,6 @@ const tasks = commands.map((command, index) =>
 const job = new Job({ tasks });
 await job.execute();
 const logs = await job.logs();
-Object.values(logs).forEach(log => {
+Object.values(logs).forEach((log) => {
   console.log(log);
 });

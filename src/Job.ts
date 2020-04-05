@@ -24,17 +24,17 @@ export default class Job {
   }
 
   async execute() {
-    return Promise.allSettled(this._tasks.map(task => {
-      return task.execute().then(async (_) => {
-        const timestamp = new Date().toISOString();
-        const taskId = task.id();
-        const taskLog = await task.log();
-        const taskDidTimeout = task.didTimeout();
-        const timeoutMessage = taskDidTimeout
-          ? ` (timed out)`
-          : ``;
-        this._logs[taskId] = `${timestamp}:${timeoutMessage} ${taskLog}`;
-      });
-    }));
+    return Promise.allSettled(
+      this._tasks.map((task) => {
+        return task.execute().then(async (_) => {
+          const timestamp = new Date().toISOString();
+          const taskId = task.id();
+          const taskLog = await task.log();
+          const taskDidTimeout = task.didTimeout();
+          const timeoutMessage = taskDidTimeout ? ` (timed out)` : ``;
+          this._logs[taskId] = `${timestamp}:${timeoutMessage} ${taskLog}`;
+        });
+      })
+    );
   }
 }
