@@ -1,6 +1,11 @@
 {
   "devDependencies": {
-    "typescript": "^3.8.3",
-    "typescript-deno-plugin": "^1.2.7"
+    "typescript-deno-plugin": "1.2.7"
+  },
+  "dependencies": {},
+  "scripts": {
+    "fmt": "deno fmt src/",
+    "install": "deno install -f --allow-run --allow-env lateral src/index.ts",
+    "dev": "yarn -s fmt && cat commands.txt | lateral --reload --delay 0 --timeout 2"
   }
 }

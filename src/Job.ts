@@ -1,5 +1,9 @@
 import Task from "./Task.ts";
 
+interface JobArgs {
+  tasks: Task[];
+}
+
 export default class Job {
   private _tasks: Task[];
 
@@ -7,7 +11,7 @@ export default class Job {
     [key: string]: string;
   } = {};
 
-  constructor(tasks: Task[], delay = 0) {
+  constructor({ tasks }: JobArgs) {
     this._tasks = tasks;
   }
 

@@ -1,3 +1,10 @@
+interface TaskArgs {
+  id: string;
+  command: string;
+  delay?: number;
+  timeout?: number;
+}
+
 export default class Task {
   private _command: string;
   private _task: Deno.Process;
@@ -7,7 +14,7 @@ export default class Task {
 
   private _timedOut: boolean = false;
 
-  constructor(id: string, command: string, delay = 0, timeout = 0) {
+  constructor({ id, command, delay = 0, timeout = 0 }: TaskArgs) {
     this._command = command;
     this._task = Deno.run({
       // TODO: Make this run arbitrary shell code. Currently, it can only run shell executables
