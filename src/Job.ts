@@ -25,7 +25,11 @@ export default class Job {
         const timestamp = new Date().toISOString();
         const taskId = task.id();
         const taskLog = await task.log();
-        this._logs[taskId] = `${timestamp}: ${taskLog}`;
+        const taskDidTimeout = task.didTimeout();
+        const timeoutMessage = taskDidTimeout
+          ? ` (timed out)`
+          : ``;
+        this._logs[taskId] = `${timestamp}:${timeoutMessage} ${taskLog}`;
       });
     }));
   }

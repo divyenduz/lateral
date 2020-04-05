@@ -1,7 +1,7 @@
 import { BufReader } from "https://deno.land/std/io/bufio.ts";
 
-import Job from './Job.ts'
-import Task from './Task.ts'
+import Job from "./Job.ts";
+import Task from "./Task.ts";
 
 const bufReader = new BufReader(Deno.stdin);
 let line: any; // TODO: Fix this type cast
@@ -12,7 +12,7 @@ while ((line = await bufReader.readString("\n")) != Deno.EOF) {
 }
 
 const tasks = commands.map((command, index) =>
-  new Task(index.toString(), command, 1)
+  new Task(index.toString(), command, 0, 2)
 );
 const job = new Job(tasks);
 await job.execute();
