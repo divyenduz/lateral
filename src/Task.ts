@@ -17,7 +17,7 @@ export default class Task {
   constructor({ id, command, delay = 0, timeout = 0 }: TaskArgs) {
     this._command = command;
     this._task = Deno.run({
-      // TODO: Make this run arbitrary shell code. Currently, it can only run shell executables
+      // TODO: Make this run arbitrary shell code (e.g. `echo "  Piped Data  " | xargs`). Currently, it can only run shell executables
       args: this._command.split(" "),
       stdin: "piped",
       stdout: "piped",
